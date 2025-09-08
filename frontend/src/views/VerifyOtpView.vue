@@ -1,6 +1,7 @@
 <template>
   <div class="auth-container">
     <div class="form-wrapper">
+      <div class="logo">VOYAGE</div>
       <h1>Enter verification code</h1>
       <p class="subtitle">A 6-digit code was printed to the console for {{ phoneNumber }}.</p>
       <form @submit.prevent="verifyOtp">
@@ -50,6 +51,13 @@ export default {
   align-items: center;
   height: 100vh;
   text-align: center;
+}
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #f0c419; /* Vibrant yellow/gold */
+  margin-bottom: 40px;
 }
 .form-wrapper {
   width: 100%;

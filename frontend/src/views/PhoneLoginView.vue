@@ -1,6 +1,7 @@
 <template>
   <div class="auth-container">
     <div class="form-wrapper">
+      <div class="logo">VOYAGE</div>
       <h1>Log in or sign up</h1>
       <p class="subtitle">Enter your phone number to receive a one-time passcode.</p>
       <form @submit.prevent="generateOtp">
@@ -47,6 +48,13 @@ export default {
   align-items: center;
   height: 100vh;
   text-align: center;
+}
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #f0c419; /* Vibrant yellow/gold */
+  margin-bottom: 40px;
 }
 .form-wrapper {
   width: 100%;
