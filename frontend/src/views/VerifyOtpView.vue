@@ -1,27 +1,22 @@
 <template>
-  <AuthLayout>
-    <div class="form-content">
-      <h1>Enter code</h1>
-      <p class="subtitle">We sent a code to the console for {{ phoneNumber }}.</p>
+  <div class="auth-container">
+    <div class="form-wrapper">
+      <h1>Enter verification code</h1>
+      <p class="subtitle">A 6-digit code was printed to the console for {{ phoneNumber }}.</p>
       <form @submit.prevent="verifyOtp">
-        <label for="otp">OTP Code</label>
-        <input id="otp" type="text" v-model="otp" placeholder="Enter your 6-digit code" required>
-        <button type="submit">Verify & Login</button>
+        <input type="text" v-model="otp" placeholder="6-digit code" required>
+        <button type="submit">Verify</button>
       </form>
       <p v-if="error" class="error-message">{{ error }}</p>
     </div>
-  </AuthLayout>
+  </div>
 </template>
 
 <script>
 import axios from 'axios';
-import AuthLayout from '@/components/AuthLayout.vue';
 
 export default {
   name: 'VerifyOtpView',
-  components: {
-    AuthLayout
-  },
   props: ['phoneNumber'],
   data() {
     return {
@@ -49,55 +44,51 @@ export default {
 </script>
 
 <style scoped>
-.form-content {
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+.form-wrapper {
   width: 100%;
-  max-width: 360px;
-  text-align: left;
+  max-width: 400px;
+  padding: 20px;
 }
-
 h1 {
-  font-size: 32px; /* Slightly larger */
-  font-weight: 700; /* Bolder */
-  margin-bottom: 12px;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 16px;
 }
-
 .subtitle {
-  color: #667085;
-  margin-bottom: 32px;
-  font-size: 16px;
+  color: #a0a0a0; /* Lighter grey for dark background */
+  margin-bottom: 40px;
 }
-
-label {
-  display: block;
-  font-weight: 600; /* Slightly bolder */
-  margin-bottom: 8px;
-}
-
 input {
   width: 100%;
-  padding: 12px 14px; /* More padding */
+  padding: 14px 20px;
   border-radius: 8px;
-  border: 1px solid #d0d5dd;
-  margin-bottom: 24px;
+  border: 1px solid #444;
+  background-color: #2a2a2a;
+  color: white;
   font-size: 16px;
   box-sizing: border-box;
+  margin-bottom: 24px;
 }
-
 button {
   width: 100%;
-  padding: 12px; /* More padding */
+  padding: 14px;
   border-radius: 8px;
   border: none;
-  background-color: #5B10FF; /* New vibrant purple */
-  color: white;
-  font-weight: 600;
+  background-color: #f0c419; /* Vibrant yellow/gold */
+  color: #1a1a1a; /* Dark text on yellow button */
+  font-weight: 700;
   font-size: 16px;
   cursor: pointer;
 }
-
 .error-message {
-  color: #d92d20; /* A less harsh red */
+  color: #ff5c5c;
   margin-top: 16px;
-  text-align: center;
 }
 </style>
