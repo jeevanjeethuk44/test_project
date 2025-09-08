@@ -5,3 +5,7 @@ __pycache__/
 # Django
 db.sqlite3
 *.log
+
+# Frontend
+/frontend/dist
+/frontend/node_modules
