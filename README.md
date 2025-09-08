@@ -1,52 +1,27 @@
-# MyProject
+# Django Vue Project
 
-This is a base Django project.
+This is a project that includes a Django backend with a Vue.js frontend.
+The backend provides a REST API for user authentication (signup and login), and the frontend provides the user interface.
 
-## Local Setup
+## Project Structure
 
-### 1. Clone the repository
+- `myproject/`: Contains the Django backend code.
+- `frontend/`: Contains the Vue.js frontend code.
 
-```bash
-git clone <repository-url>
-cd <repository-directory>
-```
+## Local Setup Instructions
 
-### 2. Create and activate a virtual environment
+1.  **Set up the Backend:**
+    - Navigate to the project root.
+    - Install Python dependencies: `pip install -r requirements.txt`
+    - Navigate into the Django project: `cd myproject`
+    - Run database migrations: `python manage.py migrate`
 
-On macOS and Linux:
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
+2.  **Set up the Frontend:**
+    - Navigate to the frontend directory: `cd frontend`
+    - Install Node.js dependencies: `npm install`
+    - Build the frontend assets: `npm run build`
 
-On Windows:
-```bash
-python -m venv venv
-.\venv\Scripts\activate
-```
-
-### 3. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Run database migrations
-
-First, navigate to the `myproject` directory where `manage.py` is located:
-```bash
-cd myproject
-```
-
-Then, run the migrations:
-```bash
-python manage.py migrate
-```
-
-### 5. Run the development server
-
-```bash
-python manage.py runserver
-```
-
-The application will be available at `http://127.0.0.1:8000/`.
+3.  **Run the Application:**
+    - Navigate back to the Django project directory: `cd ../myproject`
+    - Start the Django server: `python manage.py runserver`
+    - The application will be available at `http://127.0.0.1:8000/`.
