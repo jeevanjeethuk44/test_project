@@ -1,10 +1,11 @@
 <template>
-  <div class="login">
-    <h2>Login</h2>
-    <form @submit.prevent="login">
+  <div class="signup">
+    <h2>Signup</h2>
+    <form @submit.prevent="signup">
       <input type="text" v-model="username" placeholder="Username" required>
       <input type="password" v-model="password" placeholder="Password" required>
-      <button type="submit">Login</button>
+      <input type="password" v-model="passwordConfirm" placeholder="Confirm Password" required>
+      <button type="submit">Signup</button>
     </form>
     <p v-if="error" style="color: red;">{{ error }}</p>
   </div>
@@ -14,25 +15,30 @@
 import axios from 'axios';
 
 export default {
+  name: 'SignupView',
   data() {
     return {
       username: '',
       password: '',
+      passwordConfirm: '',
       error: ''
     };
   },
   methods: {
-    async login() {
+    async signup() {
       this.error = '';
+      if (this.password !== this.passwordConfirm) {
+        this.error = "Passwords do not match.";
+        return;
+      }
       try {
-        const response = await axios.post('/api/token/', {
+        await axios.post('/api/register/', {
           username: this.username,
           password: this.password
         });
-        localStorage.setItem('token', response.data.access);
-        this.$router.push('/welcome');
+        this.$router.push('/login');
       } catch (e) {
-        this.error = 'Invalid credentials. Please try again.';
+        this.error = 'An error occurred during signup.';
         console.error(e);
       }
     }
