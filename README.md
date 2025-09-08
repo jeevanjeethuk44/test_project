@@ -1,7 +1,13 @@
 # Django Vue Project
 
 This is a project that includes a Django backend with a Vue.js frontend.
-The backend provides a REST API for user authentication (signup and login), and the frontend provides the user interface.
+The backend provides a REST API for user authentication using a phone number and a One-Time Password (OTP). The frontend provides the user interface for this two-step login process.
+
+### Authentication Flow
+1. The user enters their phone number.
+2. The backend generates an OTP and prints it to the server console.
+3. The user enters the OTP from the console into the frontend.
+4. If the OTP is correct, the user is logged in.
 
 ## Project Structure
 
