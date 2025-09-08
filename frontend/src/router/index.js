@@ -1,18 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LoginView from '../views/LoginView.vue'
-import SignupView from '../views/SignupView.vue'
+import PhoneLoginView from '../views/PhoneLoginView.vue'
+import VerifyOtpView from '../views/VerifyOtpView.vue'
 import WelcomeView from '../views/WelcomeView.vue'
 
 const routes = [
   {
     path: '/login',
-    name: 'LoginView',
-    component: LoginView
+    name: 'PhoneLoginView',
+    component: PhoneLoginView
   },
   {
-    path: '/signup',
-    name: 'SignupView',
-    component: SignupView
+    path: '/verify-otp/:phoneNumber',
+    name: 'VerifyOtpView',
+    component: VerifyOtpView,
+    props: true // This allows the route param to be passed as a prop
   },
   {
     path: '/welcome',
