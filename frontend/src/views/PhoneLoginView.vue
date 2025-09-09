@@ -5,7 +5,10 @@
       <h1>Log in or sign up</h1>
       <p class="subtitle">Enter your phone number to receive a one-time passcode.</p>
       <form @submit.prevent="generateOtp">
-        <input type="text" v-model="phoneNumber" placeholder="Phone Number" required>
+        <div class="phone-input-wrapper">
+          <span class="country-code">+91</span>
+          <input type="text" v-model="phoneNumber" placeholder="Your 10-digit number" required>
+        </div>
         <button type="submit">Continue</button>
       </form>
       <p v-if="error" class="error-message">{{ error }}</p>
@@ -27,11 +30,12 @@ export default {
   methods: {
     async generateOtp() {
       this.error = '';
+      const fullPhoneNumber = `+91${this.phoneNumber}`;
       try {
         await axios.post('/api/generate-otp/', {
-          phone_number: this.phoneNumber
+          phone_number: fullPhoneNumber
         });
-        this.$router.push({ name: 'VerifyOtpView', params: { phoneNumber: this.phoneNumber } });
+        this.$router.push({ name: 'VerifyOtpView', params: { phoneNumber: fullPhoneNumber } });
       } catch (e) {
         this.error = 'Failed to send OTP. Please try again.';
         console.error(e);
@@ -70,16 +74,27 @@ h1 {
   color: #a0a0a0; /* Lighter grey for dark background */
   margin-bottom: 40px;
 }
-input {
-  width: 100%;
-  padding: 14px 20px;
-  border-radius: 8px;
+.phone-input-wrapper {
+  display: flex;
+  align-items: center;
   border: 1px solid #444;
+  border-radius: 8px;
   background-color: #2a2a2a;
+  margin-bottom: 24px;
+}
+.country-code {
+  padding: 14px 0 14px 20px;
+  color: #a0a0a0;
+  font-size: 16px;
+}
+input {
+  border: none;
+  background: none;
+  width: 100%;
+  padding: 14px 20px 14px 10px;
   color: white;
   font-size: 16px;
   box-sizing: border-box;
-  margin-bottom: 24px;
 }
 button {
   width: 100%;
