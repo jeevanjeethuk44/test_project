@@ -1,18 +1,18 @@
 <template>
   <div id="app-container">
-    <Sidebar v-if="loggedIn" :user="user" @logout="logout" />
+    <SideBar v-if="loggedIn" :user="user" @logout="logout" />
     <router-view @login-success="handleLogin" @logout="logout"/>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import Sidebar from './components/Sidebar.vue';
+import SideBar from './components/SideBar.vue';
 
 export default {
   name: 'App',
   components: {
-    Sidebar
+    SideBar
   },
   data() {
     return {
