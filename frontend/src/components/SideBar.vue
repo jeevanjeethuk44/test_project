@@ -1,9 +1,6 @@
 <template>
   <div class="sidebar">
     <div class="profile">
-      <div class="profile-icon">
-        <img src="https://via.placeholder.com/50" alt="Profile Icon">
-      </div>
       <div class="profile-info">
         <h3>{{ user.fullName }}</h3>
         <p>{{ user.phoneNumber }}</p>
@@ -51,12 +48,6 @@ export default {
   display: flex;
   align-items: center;
   margin-bottom: 30px;
-}
-.profile-icon img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 15px;
 }
 .profile-info h3 {
   margin: 0;
