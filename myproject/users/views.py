@@ -4,11 +4,18 @@ from datetime import timedelta
 from django.utils import timezone
 from rest_framework import generics, status
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from twilio.rest import Client
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User
-from .serializers import PhoneSerializer, VerifyOTPSerializer
+from .serializers import PhoneSerializer, VerifyOTPSerializer, UserSerializer
+
+class UserDetailView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        return self.request.user
 
 class GenerateOTPView(generics.GenericAPIView):
     serializer_class = PhoneSerializer
@@ -18,11 +25,14 @@ class GenerateOTPView(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         phone_number = serializer.validated_data['phone_number']
+        full_name = serializer.validated_data.get('full_name', '')
 
         otp = str(random.randint(100000, 999999))
         otp_expiry = timezone.now() + timedelta(minutes=10)
 
         user, created = User.objects.get_or_create(phone_number=phone_number)
+        if created:
+            user.full_name = full_name
         user.otp = otp
         user.otp_expiry = otp_expiry
         user.save()

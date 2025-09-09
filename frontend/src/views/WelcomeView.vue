@@ -16,10 +16,12 @@
 <script>
 export default {
   name: 'WelcomeView',
+  mounted() {
+    this.$emit('login-success');
+  },
   methods: {
     logout() {
-      localStorage.removeItem('token');
-      this.$router.push('/login');
+      this.$emit('logout');
     }
   }
 };
@@ -27,8 +29,10 @@ export default {
 
 <style scoped>
 .page-container {
+  flex: 1;
   padding: 40px;
   text-align: center;
+  overflow-y: auto;
 }
 header {
   margin-bottom: 60px;

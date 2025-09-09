@@ -34,6 +34,7 @@ export default {
           otp: this.otp
         });
         localStorage.setItem('token', response.data.access);
+        this.$emit('login-success');
         this.$router.push('/welcome');
       } catch (e) {
         this.error = 'Invalid OTP. Please try again.';

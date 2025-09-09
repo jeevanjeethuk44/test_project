@@ -3,8 +3,11 @@
     <div class="form-wrapper">
       <div class="logo">VOYAGE</div>
       <h1>Log in or sign up</h1>
-      <p class="subtitle">Enter your phone number to receive a one-time passcode.</p>
+      <p class="subtitle">Enter your full name and phone number to receive a one-time passcode.</p>
       <form @submit.prevent="generateOtp">
+        <div class="input-wrapper">
+          <input type="text" v-model="fullName" placeholder="Your full name" required>
+        </div>
         <div class="phone-input-wrapper">
           <span class="country-code">+91</span>
           <input type="text" v-model="phoneNumber" placeholder="Your 10-digit number" required>
@@ -24,6 +27,7 @@ export default {
   data() {
     return {
       phoneNumber: '',
+      fullName: '',
       error: ''
     };
   },
@@ -33,7 +37,8 @@ export default {
       const fullPhoneNumber = `+91${this.phoneNumber}`;
       try {
         await axios.post('/api/generate-otp/', {
-          phone_number: fullPhoneNumber
+          phone_number: fullPhoneNumber,
+          full_name: this.fullName
         });
         this.$router.push({ name: 'VerifyOtpView', params: { phoneNumber: fullPhoneNumber } });
       } catch (e) {
@@ -74,13 +79,15 @@ h1 {
   color: #a0a0a0; /* Lighter grey for dark background */
   margin-bottom: 40px;
 }
-.phone-input-wrapper {
-  display: flex;
-  align-items: center;
+.input-wrapper, .phone-input-wrapper {
   border: 1px solid #444;
   border-radius: 8px;
   background-color: #2a2a2a;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+}
+.phone-input-wrapper {
+  display: flex;
+  align-items: center;
 }
 .country-code {
   padding: 14px 0 14px 20px;
