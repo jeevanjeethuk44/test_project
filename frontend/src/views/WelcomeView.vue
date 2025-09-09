@@ -2,7 +2,7 @@
   <div class="page-container">
     <header>
       <h1>Explore Your Next Adventure</h1>
-      <p>Welcome back! Discover amazing destinations.</p>
+      <p>{{ welcomeMessage }}</p>
       <button @click="logout">Logout</button>
     </header>
     <main class="image-gallery">
@@ -18,6 +18,15 @@ export default {
   name: 'WelcomeView',
   mounted() {
     this.$emit('login-success');
+  },
+  computed: {
+    welcomeMessage() {
+      const user = this.$root.user;
+      if (user && user.fullName) {
+        return `Welcome back, ${user.fullName}! Discover amazing destinations.`;
+      }
+      return 'Welcome back! Discover amazing destinations.';
+    }
   },
   methods: {
     logout() {
