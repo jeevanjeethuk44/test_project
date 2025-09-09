@@ -1,20 +1,25 @@
 <template>
   <div class="auth-container">
-    <div class="form-wrapper">
-      <div class="logo">VOYAGE</div>
-      <h1>Log in or sign up</h1>
-      <p class="subtitle">Enter your full name and phone number to receive a one-time passcode.</p>
-      <form @submit.prevent="generateOtp">
-        <div class="input-wrapper">
-          <input type="text" v-model="fullName" placeholder="Your full name" required>
-        </div>
-        <div class="phone-input-wrapper">
-          <span class="country-code">+91</span>
-          <input type="text" v-model="phoneNumber" placeholder="Your 10-digit number" required>
-        </div>
-        <button type="submit">Continue</button>
-      </form>
-      <p v-if="error" class="error-message">{{ error }}</p>
+    <div class="form-container">
+      <div class="form-wrapper">
+        <div class="logo">VOYAGE</div>
+        <h1>Log in or sign up</h1>
+        <p class="subtitle">Enter your full name and phone number to receive a one-time passcode.</p>
+        <form @submit.prevent="generateOtp">
+          <div class="input-wrapper">
+            <input type="text" v-model="fullName" placeholder="Your full name" required>
+          </div>
+          <div class="phone-input-wrapper">
+            <span class="country-code">+91</span>
+            <input type="text" v-model="phoneNumber" placeholder="Your 10-digit number" required>
+          </div>
+          <button type="submit">Continue</button>
+        </form>
+        <p v-if="error" class="error-message">{{ error }}</p>
+      </div>
+    </div>
+    <div class="image-container">
+      <!-- The background image is set in the CSS -->
     </div>
   </div>
 </template>
@@ -53,10 +58,22 @@ export default {
 <style scoped>
 .auth-container {
   display: flex;
+  height: 100vh;
+  width: 100%;
+}
+.form-container {
+  flex: 1;
+  display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   text-align: center;
+  padding: 40px;
+}
+.image-container {
+  flex: 1;
+  background-image: url('https://picsum.photos/seed/voyage/1200/900');
+  background-size: cover;
+  background-position: center;
 }
 .logo {
   font-size: 24px;

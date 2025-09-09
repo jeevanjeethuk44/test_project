@@ -41,8 +41,8 @@ export default {
 <style scoped>
 .sidebar {
   width: 250px;
-  background-color: #1a1a1a;
-  color: #f0c419;
+  background-color: #f0c419; /* Vibrant yellow/gold */
+  color: #1a1a1a; /* Dark text */
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -61,11 +61,12 @@ export default {
 .profile-info h3 {
   margin: 0;
   font-size: 18px;
+  color: #1a1a1a;
 }
 .profile-info p {
   margin: 0;
   font-size: 14px;
-  color: #a0a0a0;
+  color: #333; /* Darker grey for readability on yellow */
 }
 nav ul {
   list-style: none;
@@ -76,17 +77,18 @@ nav li {
   margin-bottom: 10px;
 }
 nav a {
-  color: #f0c419;
+  color: #1a1a1a;
   text-decoration: none;
   font-size: 16px;
+  font-weight: 500;
 }
 button {
   margin-top: auto;
   padding: 12px;
   border-radius: 8px;
   border: none;
-  background-color: #f0c419; /* Vibrant yellow/gold */
-  color: #1a1a1a; /* Dark text on yellow button */
+  background-color: #1a1a1a; /* Dark background */
+  color: #f0c419; /* Yellow text */
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
