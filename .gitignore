@@ -9,3 +9,6 @@ db.sqlite3
 # Frontend
 /frontend/dist
 /frontend/node_modules
+
+# Environment
+.env

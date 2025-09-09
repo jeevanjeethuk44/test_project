@@ -3,7 +3,7 @@
     <div class="form-wrapper">
       <div class="logo">VOYAGE</div>
       <h1>Enter verification code</h1>
-      <p class="subtitle">A 6-digit code was printed to the console for {{ phoneNumber }}.</p>
+      <p class="subtitle">A 6-digit code was sent to {{ phoneNumber }}.</p>
       <form @submit.prevent="verifyOtp">
         <input type="text" v-model="otp" placeholder="6-digit code" required>
         <button type="submit">Verify</button>
